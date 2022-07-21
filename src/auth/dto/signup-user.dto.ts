@@ -1,5 +1,8 @@
 import { IsNotEmpty, IsString, MinLength } from 'class-validator';
 
+/**
+ * DTO for creating a new user.
+ */
 export class SignupUserDto {
   @IsString()
   @IsNotEmpty()
