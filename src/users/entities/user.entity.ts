@@ -14,7 +14,10 @@ export class User {
   id: number;
 
   @Column()
-  email: string;
+  username: string;
+    
+  @Column()
+  password: string;
 
   @OneToOne(() => Student, (student) => student.user)
   student: string;
