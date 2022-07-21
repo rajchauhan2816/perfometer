@@ -1,15 +1,31 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { AuthenticatedUser } from './../auth/auth.interfaces';
+import { JwtAuthGuard } from './../auth/jwt-auth.guard';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { StudentsService } from './students.service';
 import { CreateStudentDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
+import { CurrentUser } from 'src/auth/current-user.decorator';
 
+@UseGuards(JwtAuthGuard)
 @Controller('students')
 export class StudentsController {
   constructor(private readonly studentsService: StudentsService) {}
 
   @Post()
-  create(@Body() createStudentDto: CreateStudentDto) {
-    return this.studentsService.create(createStudentDto);
+  create(
+    @CurrentUser() user: AuthenticatedUser,
+    @Body() createStudentDto: CreateStudentDto,
+  ) {
+    return this.studentsService.create(user.userId, createStudentDto);
   }
 
   @Get()

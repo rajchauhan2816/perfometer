@@ -18,7 +18,11 @@ export class UsersService {
     }
   }
 
-  findOne(username: string) {
+  findOneByUsername(username: string) {
     return this.usersRepo.findOneBy({ username });
+  }
+
+  findOne(id: number) {
+    return this.usersRepo.findOneBy({ id });
   }
 }
