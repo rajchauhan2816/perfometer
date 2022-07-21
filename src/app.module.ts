@@ -9,6 +9,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { interceptors } from './core/interceptors';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { APP_INTERCEPTOR } from '@nestjs/core';
+import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -32,6 +33,7 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
     UsersModule,
     StudentsModule,
     SubjectsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [

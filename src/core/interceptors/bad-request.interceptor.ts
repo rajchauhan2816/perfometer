@@ -6,10 +6,16 @@ import {
   Injectable,
   NestInterceptor,
 } from '@nestjs/common';
-import { SubjectCodeAlreadyExistsError } from '../errors';
+import {
+  SubjectCodeAlreadyExistsError,
+  UsernameAlreadyExistsError,
+} from '../errors';
 
 // All not found errors in array
-const badRequestErrors = [SubjectCodeAlreadyExistsError];
+const badRequestErrors = [
+  SubjectCodeAlreadyExistsError,
+  UsernameAlreadyExistsError,
+];
 
 @Injectable()
 export class BadRequestInterceptor implements NestInterceptor {

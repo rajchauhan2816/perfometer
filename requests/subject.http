@@ -1,0 +1,12 @@
+GET http://localhost:3000/subjects
+
+###
+
+POST http://localhost:3000/subjects
+Content-Type: application/json
+
+{
+    "name": "Mathematics",
+    "description": "Mathematics",
+    "code": "MATH-2"
+}
