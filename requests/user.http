@@ -2,8 +2,8 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-    "username": "kira",
-    "password": "kira123"
+    "username": "rem",
+    "password": "rem123"
 }
 
 ###
@@ -15,3 +15,5 @@ Content-Type: application/json
     "username": "kira",
     "password": "kira123"
 }
+
+# raj raj123 rem rem123 kira kira123

@@ -1,12 +1,12 @@
 POST http://localhost:3000/students
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpcmEiLCJ1c2VySWQiOjE1LCJpYXQiOjE2NTg0MTMzODEsImV4cCI6MTY1ODQxNjk4MX0.Q1sJsjMMadEX2SXIiqlHWwg21ldrrREhFmKS6AbdTm0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJlbSIsInVzZXJJZCI6MjEsImlhdCI6MTY1ODQxODkyMywiZXhwIjoxNjU4NDIyNTIzfQ.kW5866bLVhtlAS5VFk5gsnml82yLaeOXt68hFmCCh_s
 
 {
-    "name": "Raj",
-    "gender": "M",
-    "dob":"16/12/1999",
-    "enrollmentNo":"12345"
+    "name": "Rem",
+    "gender": "F",
+    "dob":"14/10/2001",
+    "enrollmentNo":"11"
 }
 
 ###
