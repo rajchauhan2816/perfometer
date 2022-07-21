@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
   OneToOne,
   JoinColumn,
+  Relation,
 } from 'typeorm';
 
 @Entity()
@@ -14,9 +15,9 @@ export class Student {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(() => User)
+  @OneToOne(() => User, (user) => user.student)
   @JoinColumn()
-  user: User;
+  user: Relation<User>;
 
   @Column()
   name: string;

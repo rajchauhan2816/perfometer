@@ -6,7 +6,9 @@ import { StudentsModule } from './students/students.module';
 import { SubjectsModule } from './subjects/subjects.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { interceptors } from './core/interceptors';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+import { APP_INTERCEPTOR } from '@nestjs/core';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -23,7 +25,7 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
         database: configService.get('DB_NAME'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize: true,
-        namingStrategy: new SnakeNamingStrategy()
+        namingStrategy: new SnakeNamingStrategy(),
       }),
       inject: [ConfigService],
     }),
@@ -32,6 +34,9 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
     SubjectsModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    ...interceptors.map((cls) => ({ provide: APP_INTERCEPTOR, useClass: cls })),
+  ],
 })
 export class AppModule {}

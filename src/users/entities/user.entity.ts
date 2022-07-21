@@ -6,6 +6,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToOne,
+  Relation,
 } from 'typeorm';
 
 @Entity()
@@ -15,12 +16,12 @@ export class User {
 
   @Column()
   username: string;
-    
+
   @Column()
   password: string;
 
   @OneToOne(() => Student, (student) => student.user)
-  student: string;
+  student: Relation<Student>;
 
   @CreateDateColumn()
   createdAt: Date;
