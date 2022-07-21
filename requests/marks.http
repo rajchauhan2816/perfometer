@@ -1,0 +1,15 @@
+GET http://localhost:3000/student/marks
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpcmEiLCJ1c2VySWQiOjE1LCJpYXQiOjE2NTg0MTY3MzAsImV4cCI6MTY1ODQyMDMzMH0.Zi3ygPQBSkEEcutXcqFFQ3FkLw5Fe-WXTFjBL9s7QTQ
+
+###
+POST http://localhost:3000/student/marks
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpcmEiLCJ1c2VySWQiOjE1LCJpYXQiOjE2NTg0MTY3MzAsImV4cCI6MTY1ODQyMDMzMH0.Zi3ygPQBSkEEcutXcqFFQ3FkLw5Fe-WXTFjBL9s7QTQ
+
+{
+    "maxMarks": 100,
+    "marks": 90,
+    "year": "2022",
+    "subjectId": 9
+}

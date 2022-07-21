@@ -1,28 +1,28 @@
-import { Subject } from './../../subjects/entities/subject.entity';
-import { Student } from './student.entity';
+import { Subject } from '../../../subjects/entities/subject.entity';
+import { Student } from '../../entities/student.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToOne,
   JoinColumn,
+  ManyToOne,
 } from 'typeorm';
 
 @Entity()
-export class StudentSubject {
+export class StudentMark {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
   year: string;
 
-  @OneToOne(() => Student)
+  @ManyToOne(() => Student)
   @JoinColumn()
   student: Student;
 
-  @OneToOne(() => Subject)
+  @ManyToOne(() => Subject)
   @JoinColumn()
   subject: Subject;
 

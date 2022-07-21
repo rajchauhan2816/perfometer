@@ -7,6 +7,7 @@ import { SubjectsController } from './subjects.controller';
 @Module({
   imports: [TypeOrmModule.forFeature([Subject])],
   controllers: [SubjectsController],
-  providers: [SubjectsService]
+  providers: [SubjectsService],
+  exports: [SubjectsService],
 })
 export class SubjectsModule {}

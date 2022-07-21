@@ -35,8 +35,25 @@ export class StudentsService {
   async findOne(id: number) {
     const student = await this.studentsRepo.findOne({
       where: { id },
+      relations: { user: true, scores: true },
+    });
+    if (!student) {
+      throw new StudentNotFoundError();
+    }
+    return student;
+  }
+
+  /**
+   *
+   * @param userId user id of the student
+   * @returns student object
+   */
+  async findOneByUserId(userId: number) {
+    const student = await this.studentsRepo.findOne({
+      where: { user: { id: userId } },
       relations: { user: true },
     });
+
     if (!student) {
       throw new StudentNotFoundError();
     }

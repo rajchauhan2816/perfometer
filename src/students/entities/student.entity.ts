@@ -8,7 +8,9 @@ import {
   OneToOne,
   JoinColumn,
   Relation,
+  OneToMany,
 } from 'typeorm';
+import { StudentMark } from '../marks/entities/student-mark.entity';
 
 @Entity()
 export class Student {
@@ -30,6 +32,9 @@ export class Student {
 
   @Column({ unique: true })
   enrollmentNo: string;
+
+  @OneToMany(() => StudentMark, (s) => s.student)
+  scores: StudentMark[];
 
   @CreateDateColumn()
   createdAt: Date;
