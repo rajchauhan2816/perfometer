@@ -28,7 +28,7 @@ export class Student {
   @Column()
   gender: string;
 
-  @Column()
+  @Column({ unique: true })
   enrollmentNo: string;
 
   @CreateDateColumn()

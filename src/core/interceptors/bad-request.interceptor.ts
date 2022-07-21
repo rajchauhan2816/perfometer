@@ -9,12 +9,14 @@ import {
 import {
   SubjectCodeAlreadyExistsError,
   UsernameAlreadyExistsError,
+  StudentAlreadyExistsError,
 } from '../errors';
 
 // All not found errors in array
 const badRequestErrors = [
   SubjectCodeAlreadyExistsError,
   UsernameAlreadyExistsError,
+  StudentAlreadyExistsError,
 ];
 
 @Injectable()

@@ -1,3 +1,4 @@
+import { UserNotFoundError } from './../core/errors/user-not-found.error';
 import { Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { User } from './entities/user.entity';
@@ -18,11 +19,19 @@ export class UsersService {
     }
   }
 
-  findOneByUsername(username: string) {
-    return this.usersRepo.findOneBy({ username });
+  async findOneByUsername(username: string) {
+    try {
+      return await this.usersRepo.findOneBy({ username });
+    } catch (error) {
+      throw new UserNotFoundError();
+    }
   }
 
-  findOne(id: number) {
-    return this.usersRepo.findOneBy({ id });
+  async findOne(id: number) {
+    try {
+      return await this.usersRepo.findOneBy({ id });
+    } catch (error) {
+      throw new UserNotFoundError();
+    }
   }
 }

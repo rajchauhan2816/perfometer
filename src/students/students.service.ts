@@ -1,3 +1,5 @@
+import { StudentAlreadyExistsError } from './../core/errors/student-already-exists.error';
+import { StudentNotFoundError } from './../core/errors/student-not-found.error';
 import { UsersService } from './../users/users.service';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -14,7 +16,12 @@ export class StudentsService {
   ) {}
   async create(userId: number, createStudentDto: CreateStudentDto) {
     const user = await this.userService.findOne(userId);
-    return this.studentsRepo.save({ ...createStudentDto, user });
+
+    try {
+      return await this.studentsRepo.save({ ...createStudentDto, user });
+    } catch (error) {
+      throw new StudentAlreadyExistsError();
+    }
   }
 
   findAll() {
@@ -25,19 +32,33 @@ export class StudentsService {
     });
   }
 
-  findOne(id: number) {
-    return this.studentsRepo.findOneBy({ id });
+  async findOne(id: number) {
+    const student = await this.studentsRepo.findOne({
+      where: { id },
+      relations: { user: true },
+    });
+    if (!student) {
+      throw new StudentNotFoundError();
+    }
+    return student;
   }
 
-  findOneByEnrollment(enrollmentNo: string) {
-    return this.studentsRepo.findOneBy({ enrollmentNo });
+  async findOneByEnrollment(enrollmentNo: string) {
+    const student = await this.studentsRepo.findOne({
+      where: { enrollmentNo },
+      relations: { user: true },
+    });
+    if (!student) {
+      throw new StudentNotFoundError();
+    }
+    return student;
   }
 
   async update(id: number, updateStudentDto: UpdateStudentDto) {
     // update the subject with the new data and return the updated subject\
     const response = await this.studentsRepo.update(id, updateStudentDto);
     if (!response.affected) {
-      // throw new SubjectNotFoundError();
+      throw new StudentNotFoundError();
     }
     return this.studentsRepo.findOneBy({ id });
   }
@@ -45,8 +66,8 @@ export class StudentsService {
   async remove(id: number) {
     const response = await this.studentsRepo.delete(id);
     if (!response.affected) {
-      // throw new SubjectNotFoundError();
+      throw new StudentNotFoundError();
     }
-    return 'Subject deleted successfully';
+    return 'Student deleted successfully';
   }
 }

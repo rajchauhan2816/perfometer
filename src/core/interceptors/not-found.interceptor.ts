@@ -1,4 +1,9 @@
-import { SubjectNotFoundError, UsernameNotFoundError } from './../errors';
+import {
+  SubjectNotFoundError,
+  UserNotFoundError,
+  UsernameNotFoundError,
+  StudentNotFoundError,
+} from './../errors';
 import { Observable, catchError } from 'rxjs';
 import {
   CallHandler,
@@ -9,7 +14,12 @@ import {
 } from '@nestjs/common';
 
 // All not found errors in array
-const notFoundErrors = [SubjectNotFoundError, UsernameNotFoundError];
+const notFoundErrors = [
+  SubjectNotFoundError,
+  UserNotFoundError,
+  UsernameNotFoundError,
+  StudentNotFoundError,
+];
 
 @Injectable()
 export class NotFoundInterceptor implements NestInterceptor {
